@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "bread counter",
+  "name": "bread counter",
   "icons": [
     {
       "src": "favicon.ico",
