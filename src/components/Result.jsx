@@ -1,5 +1,6 @@
 import React from 'react';
 import { TwitterShareButton, TwitterIcon } from 'react-share';
+
 const Result = ({ result, oneMore }) => {
 
   const getDiff = date => {
@@ -22,6 +23,8 @@ const Result = ({ result, oneMore }) => {
     }
   }
 
+  const hashtags = ['今までに食ったパンの枚数', 'breadcounter'];
+
   return (
     <div>
       <p>お前が今までに食ったパンの枚数は</p>
@@ -36,7 +39,8 @@ const Result = ({ result, oneMore }) => {
       </button>
       <TwitterShareButton
         url="https://breadcounter.netlify.app"
-        title="#今までに食ったパンの枚数"
+        title={`今までに食ったパンの枚数は${~~(countBread(result))}枚でした．`}
+        hashtags={hashtags}
       >
         <TwitterIcon
           size="32"
