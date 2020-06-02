@@ -23,11 +23,11 @@ const Result = ({ result, oneMore }) => {
     }
   }
 
-  const hashtags = ['今までに食ったパンの枚数', 'breadcounter'];
+  const hashtags = ['今まで食ったパンの枚数', 'breadcounter'];
 
   return (
     <div>
-      <p>お前が今までに食ったパンの枚数は</p>
+      <p>おまえが今まで食ったパンの枚数は</p>
       <p>
         {~~(countBread(result))}
       </p>
@@ -38,8 +38,8 @@ const Result = ({ result, oneMore }) => {
         もう一回！
       </button>
       <TwitterShareButton
-        url="https://breadcounter.netlify.app"
-        title={`今までに食ったパンの枚数は${~~(countBread(result))}枚でした．`}
+        url="https://breadcounter.netlify.app/"
+        title={`今まで食ったパンの枚数は${~~(countBread(result))}枚でした．`}
         hashtags={hashtags}
       >
         <TwitterIcon
