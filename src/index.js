@@ -18,7 +18,7 @@ ReactDOM.render(
         { property: 'og:image', content: 'https://breadcounter.netlify.app/banner.png' },
         { property: 'og:title', content: 'breadcounter' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:description', content: 'breadcounter' },
+        { property: 'og:description', content: 'breadcounter-app' },
         { property: 'og:url', content: 'https://breadcounter.netlify.app/' },
       ]}
     />
