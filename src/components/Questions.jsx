@@ -67,6 +67,7 @@ const Questions = () => {
         {
           questions.map((x, index, questions) =>
             <Question
+              key={index}
               question={x}
               index={index}
               questions={questions}

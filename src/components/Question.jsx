@@ -5,8 +5,9 @@ const Question = ({ question, index, questions, buttonClicked }) => {
     <div>
       <p>{question.question}</p>
       {
-        question.answers?.map(answer =>
+        question.answers?.map((answer, i) =>
           <button
+            key={i}
             type="button"
             value={answer.value}
             onClick={e => buttonClicked(e.target.value, index, questions.length)}
