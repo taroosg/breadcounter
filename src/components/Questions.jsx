@@ -4,8 +4,24 @@ import questions from '../static/questions.json';
 import Start from './Start';
 import Question from './Question';
 import Result from './Result';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    background: '#282c34',
+    width: '100vw',
+    height: '100vh',
+    top: '0',
+    left: '0',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+});
 
 const Questions = () => {
+  const classes = useStyles();
 
   // const obj = {
   //   birth: '1987/11/17',
@@ -28,7 +44,7 @@ const Questions = () => {
   const startButtonClicked = e => {
     if (!birth) return false;
     setResult({ ...result, ...{ birth: birth } })
-    setPageIndex(Number(e.target.value) + 1);
+    setPageIndex(Number(e.currentTarget.value) + 1);
   }
 
   const buttonClicked = (e, index, questionsLength) => {
@@ -58,6 +74,7 @@ const Questions = () => {
         setBirth={setBirth}
         birth={birth}
         startButtonClicked={startButtonClicked}
+        classes={classes}
       />
       <SwipeableViews
         // enableMouseEvents
@@ -72,6 +89,7 @@ const Questions = () => {
               index={index}
               questions={questions}
               buttonClicked={buttonClicked}
+              classes={classes}
             />
           )
         }
@@ -79,6 +97,7 @@ const Questions = () => {
       <Result
         result={result}
         oneMore={oneMore}
+        classes={classes}
       />
     </SwipeableViews>
   )
