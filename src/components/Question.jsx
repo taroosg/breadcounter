@@ -2,27 +2,26 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import 'fontsource-roboto';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 const Question = ({ question, index, questions, buttonClicked, classes }) => {
   return (
-    <div
+    <Box
       className={classes.root}
     >
       <Typography variant="h5" component="p">
         {question.question}
       </Typography>
-      <div>
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-evenly"
+        alignItems="center"
+      >
         {
           question.answers?.map((answer, i) =>
-            // <button
-            //   key={i}
-            //   type="button"
-            //   value={answer.value}
-            //   onClick={e => buttonClicked(e.target.value, index, questions.length)}
-            // >
-            //   {answer.text}
-            // </button>
             <Button
+              className={classes.button}
               key={i}
               variant="contained"
               color="primary"
@@ -33,8 +32,8 @@ const Question = ({ question, index, questions, buttonClicked, classes }) => {
             </Button>
           )
         }
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 

@@ -1,6 +1,21 @@
 [
   {
+    "question": "高校は弁当？給食？",
+    "description": "年齢が高校未満の場合はどちらを選択しても影響しません．",
+    "answers": [
+      {
+        "text": "弁当",
+        "value": false
+      },
+      {
+        "text": "給食",
+        "value": true
+      }
+    ]
+  },
+  {
     "question": "朝食がパンの割合は？？",
+    "description": "",
     "answers": [
       {
         "text": "0%",
@@ -26,6 +41,7 @@
   },
   {
     "question": "昼食がパンの割合は？？",
+    "description": "",
     "answers": [
       {
         "text": "0%",
@@ -51,6 +67,7 @@
   },
   {
     "question": "夕食がパンの割合は？？",
+    "description": "",
     "answers": [
       {
         "text": "0%",
@@ -75,7 +92,8 @@
     ]
   },
   {
-    "question": "1回あたりに食べるパンの枚数の平均は？？",
+    "question": "1回に食べるパンの枚数の平均は？？",
+    "description": "1個を1枚で換算しましょう．「それ以上」を選択した場合は5枚で換算します．",
     "answers": [
       {
         "text": "1枚",

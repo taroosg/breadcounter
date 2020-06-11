@@ -1,8 +1,14 @@
 import React from 'react';
-import { TwitterShareButton, TwitterIcon } from 'react-share';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import { TwitterShareButton } from 'react-share';
+import _ from 'lodash';
 
-const Result = ({ result, oneMore }) => {
+const Result = ({ result, oneMore, classes }) => {
 
+  // これまでの日付を算出
   const getDiff = date => {
     const someday = new Date(date);
     const now = new Date();
@@ -11,43 +17,86 @@ const Result = ({ result, oneMore }) => {
     return daysDiff + 1;
   }
 
+  // 1日あたりのパンの枚数を算出
+  const culculateBreadPerDay = (defaulaBread, dayCount, morningFrequency, lunchFrequency, dinnerFrequency, studentLunch) => {
+    return (dayCount > 1095 && dayCount < 5479) || (dayCount > 5478 && dayCount < 6575 && studentLunch)
+      ? morningFrequency + ((0.5 * 5 / 7) + (lunchFrequency * 2 / 7)) + dinnerFrequency
+      : morningFrequency + lunchFrequency + dinnerFrequency
+  }
+
+  // これまでのトータルを算出
   const countBread = resuleObject => {
     if (
-      resuleObject.birth !== ''
+      resuleObject.birth
+      && resuleObject.studentLunch != null
       && resuleObject.frequency.length !== 0
       && resuleObject.quantity !== 0
     ) {
-      const array = resuleObject.frequency.map(x => x * getDiff(resuleObject.birth) * resuleObject.quantity);
-      const total = array.reduce((accumulator, currentValue) => accumulator + currentValue)
-      return total;
+      return _.round(
+        _([...new Array(getDiff(resuleObject.birth)).fill(0)])
+          .map((x, index) =>
+            culculateBreadPerDay(
+              x,
+              index,
+              resuleObject.frequency[0],
+              resuleObject.frequency[1],
+              resuleObject.frequency[2],
+              resuleObject.studentLunch
+            )
+          )
+          .map(x => x * resuleObject.quantity)
+          .sum()
+      )
     }
   }
 
   const hashtags = ['今まで食ったパンの枚数', 'breadcounter'];
 
   return (
-    <div>
-      <p>おまえが今まで食ったパンの枚数は</p>
-      <p>
-        {~~(countBread(result))}
-      </p>
-      <p>枚だッ！</p>
-      <button
-        onClick={e => oneMore()}
+    <Box
+      className={classes.root}
+    >
+      {/* {JSON.stringify(result)} */}
+      <Box>
+        <Typography variant="h5" component="p">
+          今まで食ったパンの枚数は
+      </Typography>
+        <Typography variant="h3" component="p">
+          {countBread(result)}枚
+      </Typography>
+        <Typography variant="h5" component="p">
+          だッ！
+      </Typography>
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-evenly"
+        alignItems="center"
       >
-        もう一回！
-      </button>
-      <TwitterShareButton
-        url="https://breadcounter.netlify.app/"
-        title={`今まで食ったパンの枚数は${~~(countBread(result))}枚でした．`}
-        hashtags={hashtags}
-      >
-        <TwitterIcon
-          size="32"
-          round
-        />
-      </TwitterShareButton>
-    </div>
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          onClick={e => oneMore()}
+        >
+          もう一回！
+        </Button>
+        <TwitterShareButton
+          url="https://breadcounter.netlify.app/"
+          title={`今まで食ったパンの枚数は${countBread(result)}枚でした．`}
+          hashtags={hashtags}
+        >
+          <Button
+            className={classes.button}
+            color="primary"
+          >
+            <TwitterIcon />
+            {` share result!`}
+          </Button>
+        </TwitterShareButton>
+      </Box>
+    </Box>
   )
 }
 

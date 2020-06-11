@@ -18,18 +18,13 @@ const darkTheme = createMuiTheme({
   },
 });
 
-
-
 const App = () => {
 
   return (
     <MuiThemeProvider
       theme={darkTheme}
-    // className="App"
     >
-      {/* <main className="App-main"> */}
       <Questions />
-      {/* </main> */}
     </MuiThemeProvider>
   );
 }

@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   root: {
     background: '#282c34',
+    color: '#f2f2f2',
     width: '100vw',
     height: '100vh',
     top: '0',
@@ -18,19 +19,19 @@ const useStyles = makeStyles({
     justifyContent: 'space-evenly',
     alignItems: 'center',
   },
+  button: {
+    margin: '2vmin',
+    width: '30vmin',
+    maxWidth: '300px',
+  }
 });
 
 const Questions = () => {
   const classes = useStyles();
 
-  // const obj = {
-  //   birth: '1987/11/17',
-  //   frequency: [0.5, 0.75, 0.25],
-  //   quantity: 1,
-  // }
-
   const resultObject = {
-    birth: '',
+    birth: null,
+    studentLunch: null,
     frequency: [],
     quantity: 0,
   }
@@ -50,6 +51,8 @@ const Questions = () => {
   const buttonClicked = (e, index, questionsLength) => {
     if (index === questionsLength - 1)
       setResult({ ...result, ...{ quantity: Number(e) } })
+    else if (index === 0)
+      setResult({ ...result, ...{ studentLunch: JSON.parse(e) } })
     else
       setResult({ ...result, ...{ frequency: [...result.frequency, Number(e)] } });
     if (index + 1 < questionsLength)
