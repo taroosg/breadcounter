@@ -42,7 +42,7 @@ const Questions = () => {
   const [birth, setBirth] = useState('1980-01-01');
   const [result, setResult] = useState(resultObject);
 
-  const getDiffFromSomodayToToday = someday => {
+  const notSomodayFuture = someday => {
     const d1 = new Date();
     const d2 = new Date(someday);
     return d1 - d2 > 0
@@ -51,7 +51,7 @@ const Questions = () => {
   }
 
   const startButtonClicked = e => {
-    if (!birth || !getDiffFromSomodayToToday(birth)) return false;
+    if (!birth || !notSomodayFuture(birth)) return false;
     setResult({ ...result, ...{ birth: birth } })
     setPageIndex(Number(e.currentTarget.value) + 1);
   }
