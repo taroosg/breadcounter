@@ -18,8 +18,8 @@ const Result = ({ result, oneMore, classes }) => {
   }
 
   // 1日あたりのパンの枚数を算出
-  const culculateBreadPerDay = (dayCount, morningFrequency, lunchFrequency, dinnerFrequency, studentLunch) => {
-    return (dayCount > 1095 && dayCount < 5479) || (dayCount > 5478 && dayCount < 6575 && studentLunch)
+  const calculateBreadPerDay = (dayCount, morningFrequency, lunchFrequency, dinnerFrequency, studentLunch) => {
+    return (1095 < dayCount && dayCount < 5479) || (5478 < dayCount && dayCount < 6575 && studentLunch)
       ? morningFrequency + ((0.5 * 5 / 7) + (lunchFrequency * 2 / 7)) + dinnerFrequency
       : morningFrequency + lunchFrequency + dinnerFrequency
   }
@@ -35,7 +35,7 @@ const Result = ({ result, oneMore, classes }) => {
       return _.round(
         _([...new Array(getDiff(resuleObject.birth)).fill(0)])
           .map((x, index) =>
-            culculateBreadPerDay(
+            calculateBreadPerDay(
               index,
               resuleObject.frequency[0],
               resuleObject.frequency[1],
@@ -58,13 +58,13 @@ const Result = ({ result, oneMore, classes }) => {
       <Box>
         <Typography variant="h5" component="p">
           今まで食ったパンの枚数は
-      </Typography>
+        </Typography>
         <Typography variant="h3" component="p">
           {countBread(result)}枚
-      </Typography>
+        </Typography>
         <Typography variant="h5" component="p">
           だッ！
-      </Typography>
+        </Typography>
       </Box>
       <Box
         display="flex"
