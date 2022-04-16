@@ -81,7 +81,7 @@ const Result = ({ result, oneMore, classes }) => {
           もう一回！
         </Button>
         <TwitterShareButton
-          url="https://breadcounter.netlify.app/"
+          url="https://breadcounter.vercel.app/"
           title={`今まで食ったパンの枚数は${countBread(result)}枚でした．`}
           hashtags={hashtags}
         >
